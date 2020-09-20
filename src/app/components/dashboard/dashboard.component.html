@@ -1,0 +1,35 @@
+<div class="container min-heigh">
+    <app-users-details [pcdata]="newBtnName"></app-users-details>    
+    <div class="row mt-1 mb-4">
+        <div class="col-md-4 col-xs-12">
+            <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title text-uppercase">PROJECTS</h5>
+                  <h6 class="card-subtitle mb-2 text-muted">Total 6 projects</h6>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  <a [routerLink]="['/project']" class="card-link">Project</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 col-xs-12">
+            <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title text-uppercase">Employee</h5>
+                  <h6 class="card-subtitle mb-2 text-muted">Total 6 employees</h6>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  <a [routerLink]="['/employee']" class="card-link">Employee</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 col-xs-12">
+            <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title text-uppercase">Payments</h5>
+                  <h6 class="card-subtitle mb-2 text-muted">Total Rs.1548</h6>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  <a [routerLink]="['/payment']" class="card-link">Payments</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

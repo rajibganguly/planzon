@@ -7,9 +7,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
+  loginSection: boolean = false;
+  registerSection: boolean = true;
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  goToRegister() {
+    this.registerSection = true;
+    this.loginSection = false;
+  }
+
+  goToLogin() {
+    this.registerSection = false;
+    this.loginSection = true;
   }
 
 }
