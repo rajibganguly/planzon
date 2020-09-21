@@ -11,11 +11,14 @@ import { EmployeeComponent } from './components/employee/employee.component';
 import { PaymentsComponent } from './components/payments/payments.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { UsersDetailsComponent } from './components/users-details/users-details.component';
-import { HttpClientModule } from '@angular/common/http';;
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 //SERVICES
 import { GeneralService } from './service/general.service';
 import { FirebaseService } from './service/firebase.service';
+import { AuthService } from './service/auth-service.service';
+import { NotFoundComponentComponent } from './components/not-found-component/not-found-component.component';
 
 @NgModule({
   declarations: [
@@ -27,14 +30,17 @@ import { FirebaseService } from './service/firebase.service';
     EmployeeComponent,
     PaymentsComponent,
     FooterComponent,
-    UsersDetailsComponent
+    UsersDetailsComponent,
+    NotFoundComponentComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
-  providers: [GeneralService, FirebaseService ],
+  providers: [GeneralService, FirebaseService, AuthService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

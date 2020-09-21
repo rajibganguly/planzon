@@ -6,3 +6,13 @@ export interface RegisteredInfo {
     expiresIn: string;
     localId: string;
 }
+
+export interface Register {
+    emailId: string;
+    password: string;
+}
+
+export interface Login {
+    emailId: string;
+    password: string;
+}

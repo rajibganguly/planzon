@@ -1,18 +1,38 @@
+<!-- CREATED SEPARATE DASHBOARD for dashboard page -->
+<div class="row mt-4 mb-4" *ngIf="dashboardSpecialScreen">
+  <div class="col-md-6 col-xs-12">
+    <div class="card">
+      <div class="card-body" *ngIf="parseValue">
+        <h5 class="card-title text-uppercase">{{parseValue['companyName']}}</h5>
+        <p class="card-text text-muted">{{parseValue['fullName']}}</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6 col-xs-12">
+    <div class="card">
+      <div class="card-body" *ngIf="parseValue">
+        <h5 class="card-title text-uppercase">{{parseValue['emailId']}}</h5>
+        <p class="card-text text-muted">{{dated}}</p>
+      </div>
+    </div>
+  </div>
+</div>
 
-<div class="row mt-4 mb-4">
+<!-- CREATED SEPARATE Others for other page -->
+<div class="row mt-4 mb-4" *ngIf="!dashboardSpecialScreen">
   <div class="col-md-5 col-xs-12">
     <div class="card">
-      <div class="card-body">
-        <h5 class="card-title text-uppercase">w3earth</h5>
-        <p class="card-text text-muted">Mumbai, India</p>
+      <div class="card-body" *ngIf="parseValue">
+        <h5 class="card-title text-uppercase">{{parseValue['companyName']}}</h5>
+        <p class="card-text text-muted">{{parseValue['fullName']}}</p>
       </div>
     </div>
   </div>
   <div class="col-md-5 col-xs-12">
     <div class="card">
-      <div class="card-body">
-        <h5 class="card-title text-uppercase">w3earth</h5>
-        <p class="card-text text-muted">Mumbai, India</p>
+      <div class="card-body" *ngIf="parseValue">
+        <h5 class="card-title">{{parseValue['emailId']}}</h5>
+        <p class="card-text text-muted">{{dated}}</p>
       </div>
     </div>
   </div>
