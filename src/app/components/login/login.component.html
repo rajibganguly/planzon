@@ -1,24 +1,40 @@
-<div class="container">
+<div class="container" style="height:580px">
     <div class="d-flex justify-content-center" *ngIf="loginSection">
         <div class="jumbotron loginbox m-4">
-            <h1 class="display-4">Login, Planzon user!</h1>
-            <form>
+            <div class="display-4" style="font-size:2rem">Login, Planzon user!</div>
+            <form [formGroup]="loginForm" (ngSubmit)="loginFormValue()">
                 <div class="form-group">
                     <label for="exampleInputEmail1">Email address</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
-                        else.</small>
+                    <input type="email" class="form-control" id="exampleInputEmail1" formControlName="emailId" aria-describedby="email" placeholder="Enter email id">
+                    <small class="form-text text-danger">
+                      <ng-container *ngFor="let validation of validation_messages.emailId">
+                        <span class="error-message"
+                          *ngIf="loginForm.get('emailId').hasError(validation.type) && (loginForm.get('emailId').dirty || loginForm.get('emailId').touched)">
+                          {{ validation.message }}
+                        </span>
+                      </ng-container>
+                    </small>
+                    <small id="emailHelp" class="form-text text-success">We'll never share your email with anyone
+                        else.</small>                    
                 </div>
                 <div class="form-group">
                     <label for="exampleInputPassword1">Password</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1">
+                    <input type="password" class="form-control" id="exampleInputPassword1" formControlName="password">
+                    <small class="form-text text-danger">
+                      <ng-container *ngFor="let validation of validation_messages.password">
+                        <span class="error-message"
+                          *ngIf="loginForm.get('password').hasError(validation.type) && (loginForm.get('password').dirty || loginForm.get('password').touched)">
+                          {{ validation.message }}
+                      </span>
+                      </ng-container>
+                    </small>
                 </div>
                 <div class="form-group form-check">
                     <input type="checkbox" class="form-check-input" id="exampleCheck1">
                     <label class="form-check-label" for="exampleCheck1">Check me out</label>
                 </div>
                 <div class="btn-group">
-                    <button type="submit" class="btn btn-dark">Login</button>
+                    <button type="submit" class="btn btn-dark" [disabled]="!loginForm.valid">Login</button>
                     <button type="button" class="btn btn-light" (click)="goToRegister()">Register</button>
                 </div>
             </form>
@@ -27,24 +43,70 @@
 
     <div class="d-flex justify-content-center" *ngIf="registerSection">
         <div class="jumbotron loginbox m-4">
-            <h1 class="display-4">Register, Planzon user!</h1>
-            <form>
+          <div class="display-4" style="font-size:2rem">Register, Planzon user!</div>
+            <form [formGroup]="regForm" (ngSubmit)="regFormValue()">
                 <div class="form-group">
-                    <label for="exampleInputEmail1">Email address</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
-                        else.</small>
+                    <label for="exampleInputName2">Full Name</label>
+                    <input type="email" class="form-control" id="exampleInputName2" 
+                    formControlName="fullName"
+                    aria-describedby="name">   
+                    <small class="form-text text-danger">
+                      <ng-container *ngFor="let validation of validation_messages.fullName">
+                        <span class="error-message"
+                          *ngIf="regForm.get('fullName').hasError(validation.type) && (regForm.get('fullName').dirty || regForm.get('fullName').touched)">
+                          {{ validation.message }}
+                      </span>
+                      </ng-container>
+                    </small>                 
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputPassword1">Password</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1">
+                    <label for="exampleInputCompanyName2">Company Name</label>
+                    <input type="email" class="form-control" id="exampleInputCompanyName2" 
+                    formControlName="companyName"
+                    aria-describedby="companyName">  
+                    <small class="form-text text-danger">
+                      <ng-container *ngFor="let validation of validation_messages.companyName">
+                        <span class="error-message"
+                          *ngIf="regForm.get('companyName').hasError(validation.type) && (regForm.get('companyName').dirty || regForm.get('companyName').touched)">
+                          {{ validation.message }}
+                      </span>
+                      </ng-container>
+                    </small>                  
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail2">Email address</label>
+                    <input type="email" class="form-control" id="exampleInputEmail2" 
+                    formControlName="emailId"
+                    aria-describedby="emailHelp">
+                    <small class="form-text text-danger">
+                      <ng-container *ngFor="let validation of validation_messages.emailId">
+                        <span class="error-message"
+                          *ngIf="regForm.get('emailId').hasError(validation.type) && (regForm.get('emailId').dirty || regForm.get('emailId').touched)">
+                          {{ validation.message }}
+                      </span>
+                      </ng-container>
+                    </small>
+                </div>                  
+                <div class="form-group">
+                    <label for="exampleInputPassword2">Password</label>
+                    <input type="password" class="form-control" 
+                    formControlName="password"
+                    id="exampleInputPassword2">
+                    <small class="form-text text-danger">
+                      <ng-container *ngFor="let validation of validation_messages.password">
+                        <span class="error-message"
+                          *ngIf="regForm.get('password').hasError(validation.type) && (regForm.get('password').dirty || regForm.get('password').touched)">
+                          {{ validation.message }}
+                      </span>
+                      </ng-container>
+                    </small>
                 </div>
                 <div class="form-group form-check">
                     <input type="checkbox" class="form-check-input" id="exampleCheck1">
                     <label class="form-check-label" for="exampleCheck1">Check me out</label>
                 </div>
                 <div class="btn-group">
-                    <button type="submit" class="btn btn-dark">Register</button>
+                    <button type="submit" class="btn btn-dark" [disabled]="!regForm.valid">Register</button>
                     <button type="button" class="btn btn-light" (click)="goToLogin()">Login</button>
                 </div>
             </form>

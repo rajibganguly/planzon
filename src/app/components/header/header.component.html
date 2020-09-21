@@ -20,6 +20,12 @@
         <li class="nav-item">
           <a class="nav-link" [routerLink]="['payments']"><strong>PAYMENTS</strong> <span class="sr-only">(current)</span></a>
         </li>
+        <li class="nav-item" *ngIf="loginOrLogout === 'LOGIN'">
+          <a class="nav-link" (click)="signIn()" style="cursor:pointer"><strong>{{loginOrLogout}}</strong> <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item" *ngIf="loginOrLogout === 'LOGOUT'">
+          <a class="nav-link" (click)="signOut()" style="cursor:pointer"><strong>{{loginOrLogout}}</strong> <span class="sr-only">(current)</span></a>
+        </li>
         <!-- <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Payments

@@ -1,4 +1,6 @@
 import { Component, DoCheck, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/service/auth-service.service';
 import { GeneralService } from 'src/app/service/general.service';
 
 @Component({
@@ -10,14 +12,22 @@ export class EmployeeComponent implements OnInit, DoCheck {
   newBtnName: string = 'New Employee'; // New Button
   editBoardFlag: boolean;
 
-  constructor(private genService: GeneralService) { }
+  constructor(
+    private genService: GeneralService,
+    private auth: AuthService,
+    private router: Router
+  ) { }
 
   ngOnInit() {
-    
-    // this.genService.editBoxShow.subscribe(
-    //   (res) => this.editBoardFlag = res
-    // )
-    //AfterViewChecked
+    this.loginCheckFunc();    
+  }
+
+  loginCheckFunc() {
+    if(!this.auth.isLoggedIn) {
+      this.router.navigate(['/']);
+    } else {
+      this.router.navigate(['/employees']);
+    }
   }
 
   ngDoCheck() {

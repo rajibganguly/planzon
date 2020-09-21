@@ -5,14 +5,14 @@
 export const environment = {
   production: false,
   firebaseConfig: {
-    apiKey: "AIzaSyD2n6161pqD-mHm4ZRtrfd6KKcDPoQpe_Q",
-    authDomain: "projectmanagementtool-81067.firebaseapp.com",
-    databaseURL: "https://projectmanagementtool-81067.firebaseio.com",
-    projectId: "projectmanagementtool-81067",
-    storageBucket: "projectmanagementtool-81067.appspot.com",
-    messagingSenderId: "517573318746",
-    appId: "1:517573318746:web:f7fc10d797729ff742a063",
-    measurementId: "G-3QNRYG24T8"
+    apiKey: "AIzaSyD1AmOAQ-s6K_S-h2WCKcf4XRXKmCHGEeo",
+    authDomain: "planzon-d8567.firebaseapp.com",
+    databaseURL: "https://planzon-d8567.firebaseio.com",
+    projectId: "planzon-d8567",
+    storageBucket: "planzon-d8567.appspot.com",
+    messagingSenderId: "921987841543",
+    appId: "1:921987841543:web:1e1e3a9124a067a2d3b4a2",
+    measurementId: "G-47M955N3ZC"
   }
 };
 
