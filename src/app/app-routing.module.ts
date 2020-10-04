@@ -5,6 +5,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ProjectComponent } from './components/project/project.component';
 import { EmployeeComponent } from './components/employee/employee.component';
 import { PaymentsComponent } from './components/payments/payments.component';
+import { ResetComponent } from './components/login/reset.component';
 import { NotFoundComponentComponent } from './components/not-found-component/not-found-component.component';
 
 
@@ -12,6 +13,7 @@ import { NotFoundComponentComponent } from './components/not-found-component/not
 const routes: Routes = [
   {path: '', component: LoginComponent},
   {path: 'login', component: LoginComponent},
+  {path: 'reset', component: ResetComponent},
   {path: 'dashboard', component: DashboardComponent},
   {path: 'projects', component: ProjectComponent},
   {path: 'employees', component: EmployeeComponent},

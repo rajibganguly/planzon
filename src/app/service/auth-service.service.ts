@@ -10,7 +10,6 @@ export class AuthService {
 
   constructor(private router: Router) {
     if(this.localdetails) {
-      console.log('55555555555555555555555555555555', this.localdetails);
       this.isLoggedIn = true;
     } else {
       this.isLoggedIn = false;

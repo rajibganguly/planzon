@@ -9,8 +9,11 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class FirebaseService {
+  private stored = localStorage.getItem('registerValue');
+  private companyCodeVal = JSON.parse(this.stored);
+  private companyCode = this.companyCodeVal.companyName.split(' ')[0];
 
-  userFullName = localStorage.getItem('fullName');
+  userCode = this.companyCode;
 
   // FIREBASE DATABASE
   projects = environment.firebaseConfig.databaseURL + '/projects';
@@ -21,16 +24,16 @@ export class FirebaseService {
   constructor(private http: HttpClient) { }
 
   // GET ALL PROJECTS ================================================================================
-  getAllProjects() {    
+  getAllProjects(code: string) {    
     return this.http.get<any>(this.projects + '.json').pipe(
-      map(xresponseData=> {
+      map(xresponseData=> {        
       const postsArr = [];
       const newPostArr = [];
       for (const key in xresponseData) {
-      postsArr.push({...xresponseData[key], id: key});
+        postsArr.push({...xresponseData[key], id: key});
       }
-      postsArr.filter((filterId) => {
-        if(filterId.fullname == this.userFullName) {          
+      postsArr.filter((filterId) => {  
+        if(filterId.user == this.userCode) {          
           newPostArr.push(filterId);
           return newPostArr;
         }        
@@ -51,7 +54,7 @@ export class FirebaseService {
       postsArr.push({...xresponseData[key], id: key});
          }
       postsArr.filter((filterId) => {
-        if(filterId.fullname == this.userFullName) {          
+        if(filterId.user == this.userCode) {          
           newPostArr.push(filterId);
           return newPostArr;
         } else return false;       
@@ -72,7 +75,7 @@ export class FirebaseService {
       postsArr.push({...xresponseData[key], id: key});
          }
       postsArr.filter((filterid)=> {
-        if(filterid['designer'] === type && filterid['fullname'] == this.userFullName) {          
+        if(filterid['designer'] === type && filterid['user'] == this.userCode) {          
           newPostArr.push(filterid);
           return newPostArr;
         }        
@@ -85,7 +88,6 @@ export class FirebaseService {
 
   // ADD NEW DESIGNER ==================================================================================
   registerNewDesigners(data: object) {
-    // data['fullname'] = this.userDetailsObj.fullname;
     return this.http.post<any>(this.designers + '.json', data, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',        
@@ -113,7 +115,7 @@ export class FirebaseService {
 
     // POST A NEW PROJECT =============================================================================
   postNewProject(data: object) {
-    // data['fullname'] = this.userFullName;
+    console.log(data);
     return this.http.post<any>(this.projects + '.json', data).subscribe((data)=> {
       console.log(data);
     }, (error) => {

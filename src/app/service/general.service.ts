@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { environment } from '../../environments/environment';
@@ -86,6 +86,26 @@ export class GeneralService {
       this.updatedDataSelection(error.error.error.message);
     })
     
+  }
+
+
+  resetPasswordMail(email: string) {
+    const data = {
+      requestType: 'PASSWORD_RESET',
+      email: email
+    }
+    this.http.post<any>(`https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=${this.webApi}`, data, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'        
+      })
+    }).pipe(
+      map(x => x)
+    ).subscribe((response) => {
+      console.log(response);              
+    }, (error) => {
+      console.log(error.error);
+      this.updatedDataSelection(error.error.error.message);
+    })
   }
 
 

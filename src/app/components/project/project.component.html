@@ -6,11 +6,60 @@
         <h5 class="text-uppercase text-success">
           <img src="../../../assets/bootstrap-icons/pencil.svg" alt="pencil" width="25" height="15" title="pencil">
            Projects</h5>
+           <hr/>     
+          <form class="mt-4 mb-4" [formGroup]="createProjectForm" (ngSubmit)="createProjectFormValue()">
+            <div class="row">
+              <div class="col-md-6 col-xs-12">
+                <div class="form-group">
+                  <label for="projectName">Name of the Project</label>
+                  <input type="text" class="form-control" 
+                  id="projectName" 
+                  formControlName="projectName"
+                  aria-describedby="projectName">
+                </div>
+                <div class="form-group">
+                  <label for="projectType">Project Type</label>
+                  <select class="form-control" 
+                  formControlName="projectType"
+                  id="projectName">
+                    <option selected="selected">Choose Type</option>
+                    <option *ngFor="let type of projectType" value="type">{{type}}</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="projectDescription">Project Description</label>
+                  <textarea class="form-control" 
+                  formControlName="projectDescription"
+                  id="projectDescription"></textarea>
+                </div>
+              </div>
+              <div class="col-md-6 col-xs-12">
+                <div class="form-group">
+                  <label for="projectValue">Project Value (Total Rs.)</label>
+                  <input type="number" class="form-control" 
+                  formControlName="projectValue"
+                  id="projectValue" aria-describedby="projectValue">
+                </div>          
+                <div class="form-group">
+                  <label for="paidAmount">Paid Amount (Client paid Rs.)</label>
+                  <input type="number" class="form-control"
+                  formControlName="paidAmount" 
+                  id="paidAmount" aria-describedby="paidAmount">
+                </div>
+              </div>
+              <div class="col-md-12 col-xs-12">
+                <div class="btn-group">
+                  <button type="submit" class="btn btn-primary" [disabled]="!createProjectForm.valid">Submit</button>
+                </div>
+              </div>              
+            </div>           
+          
+          </form>
       </div>            
     </div>
   </div>   
     <div class="row mt-1 mb-4">
-        <div class="col-md-8 col-xs-12">
+        <div class="col-md-10 col-xs-12">
             <div class="card">
                 <div class="card-body">
                   <h5 class="card-title text-uppercase">Lists of Projects</h5>
@@ -18,41 +67,47 @@
                   <table class="table table-hover table-stripe">
                     <thead>
                       <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">First</th>
-                        <th scope="col">Last</th>
-                        <th scope="col">Handle</th>
+                        <th scope="col">Project Name</th>
+                        <th scope="col">Project Value (Rs.)</th>
+                        <th scope="col">Project Status</th>
+                        <th scope="col">Designer</th>
+                        
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">3</th>
-                        <td colspan="2">Larry the Bird</td>
-                        <td>@twitter</td>
-                      </tr>
+                      <tr *ngFor="let pro of allProject">
+                        <td scope="row">{{pro?.projectName}}</td>
+                        <td>{{pro?.projectValue}}</td>
+                        <td>
+                          <div *ngIf="!pro.projectStatus">
+                            <img src="../../../assets/bootstrap-icons/pencil.svg" alt="pencil" width="25" height="15" title="pencil">
+                            Not Started
+                          </div>
+                          <div *ngIf="pro.projectStatus">
+                            <img src="../../../assets/bootstrap-icons/pencil.svg" alt="pencil" width="25" height="15" title="pencil">
+                            Started
+                          </div>
+                        </td>
+                        <td>                          
+                          <div *ngIf="pro.designer === 'Not Assigned'; else designerTrue">
+                            <button class="btn btn-dark btn-sm">Assign Designer</button>
+                          </div>
+                          <ng-template #designerTrue>
+                            <div>{{pro?.designer}}</div>
+                          </ng-template>
+                        </td>
+                      </tr>                      
                     </tbody>
                   </table>
                   <a [routerLink]="['/projects']" class="card-link">Project</a>
                 </div>
             </div>
         </div>
-        <div class="col-md-4 col-xs-12">
+        <div class="col-md-2 col-xs-12">
             <div class="card">
                 <div class="card-body">
                   <h5 class="card-title text-uppercase">Types of Projects</h5>
-                  <h6 class="card-subtitle mb-2 text-muted">Total 6 employees</h6>
+                  <h6 class="card-subtitle mb-2 text-muted">Total {{allProject?.length}} Projects</h6>
                   <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                   <a [routerLink]="['/employees']" class="card-link">Employee</a>
                 </div>

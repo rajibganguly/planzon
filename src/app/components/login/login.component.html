@@ -36,6 +36,7 @@
                 <div class="btn-group">
                     <button type="submit" class="btn btn-dark" [disabled]="!loginForm.valid">Login</button>
                     <button type="button" class="btn btn-light" (click)="goToRegister()">Register</button>
+                    <button type="button" class="btn btn-link" [routerLink]="['/reset']">Forgot Password?</button>
                 </div>
             </form>
         </div>

@@ -28,11 +28,12 @@ export class UsersDetailsComponent implements OnInit {
 
     const localValue = localStorage.getItem('registerValue');
     this.parseValue = JSON.parse(localValue);
-    console.log(typeof(this.parseValue), this.parseValue);
+    // console.log(typeof(this.parseValue), this.parseValue);
 
     const curYr = this.date.getFullYear();
     const curMon = this.date.getMonth();
     const curDt = this.date.getDate();
+    sessionStorage.setItem('toDaysDate', JSON.stringify(`${curYr}/${curMon+1}/${curDt}`))
 
 
     this.dated = `Today: ${curDt} ${this.returnMonth(curMon)}, ${curYr}`;

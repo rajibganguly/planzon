@@ -10,6 +10,7 @@ import { ProjectComponent } from './components/project/project.component';
 import { EmployeeComponent } from './components/employee/employee.component';
 import { PaymentsComponent } from './components/payments/payments.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { ResetComponent } from './components/login/reset.component';
 import { UsersDetailsComponent } from './components/users-details/users-details.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -31,7 +32,8 @@ import { NotFoundComponentComponent } from './components/not-found-component/not
     PaymentsComponent,
     FooterComponent,
     UsersDetailsComponent,
-    NotFoundComponentComponent
+    NotFoundComponentComponent,
+    ResetComponent
   ],
   imports: [
     BrowserModule,
