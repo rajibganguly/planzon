@@ -1,4 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { GeneralService } from 'src/app/service/general.service';
 
 @Component({
@@ -9,14 +10,15 @@ export class ResetComponent {
 
   @ViewChild('resetPass', {static: false}) resetPass: ElementRef;
 
-    constructor(private generalService: GeneralService) {}
+    constructor(private generalService: GeneralService, private router: Router) {}
 
   
     resetEmail(s: string) {
-      // console.log(s);
       const email = s;
       console.log(email);
       this.generalService.resetPasswordMail(email);
+      this.router.navigate(['/']);
+
     }
 
 }

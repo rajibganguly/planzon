@@ -24,7 +24,7 @@ export class FirebaseService {
   constructor(private http: HttpClient) { }
 
   // GET ALL PROJECTS ================================================================================
-  getAllProjects(code: string) {    
+  getAllProjects(user: string) {    
     return this.http.get<any>(this.projects + '.json').pipe(
       map(xresponseData=> {        
       const postsArr = [];
@@ -68,8 +68,7 @@ export class FirebaseService {
   getProjectRelatesToDesigner(type: string) {
     const postsArr = [];
     const newPostArr = [];
-    return this.http.get<any>(this.projects + '.json').pipe(
-      
+    return this.http.get<any>(this.projects + '.json').pipe(      
       map(xresponseData=> {      
       for (const key in xresponseData) {
       postsArr.push({...xresponseData[key], id: key});
@@ -114,13 +113,9 @@ export class FirebaseService {
 
 
     // POST A NEW PROJECT =============================================================================
-  postNewProject(data: object) {
+  postNewProject(data: any) {
     console.log(data);
-    return this.http.post<any>(this.projects + '.json', data).subscribe((data)=> {
-      console.log(data);
-    }, (error) => {
-      console.log(error);
-    });
+    return this.http.post(`${this.projects}.json`, data);
   }
 
 

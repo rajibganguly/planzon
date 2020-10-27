@@ -6,55 +6,152 @@
         <h5 class="text-uppercase text-success">
           <img src="../../../assets/bootstrap-icons/pencil.svg" alt="pencil" width="25" height="15" title="pencil">
            Projects</h5>
+
+        <!-- CREATE PROJECTS -->
+        <form class="row" [formGroup]="createProjectForm" (ngSubmit)="createProjectFormValue()">
+          <div class="col-md-6 col-xs-12">
+            <div class="form-group">
+              <label for="pzProjectName">Name of the Project</label>
+              <input id="pzProjectName" formControlName="pzProjectName" type="text" class="form-control" placeholder="Ex. Project Name" />
+            </div>
+            <div class="form-group">
+              <label for="pzProjectAllocatorName">Project Allocate to [<small>Mention if consider RUNNING PROJECT</small>]</label>
+              <input id="pzProjectAllocatorName" formControlName="pzProjectAllocatorName" type="text" class="form-control" placeholder="Ex. John Doe" />
+            </div>
+            <div class="form-group">
+              <label for="pzProjectType">Select Project Type</label>
+              <select id="pzProjectType" class="form-control" formControlName="pzProjectType">
+                <option selected>Select Project Type</option>
+                <option [value]="project.value" *ngFor="let project of projectTypes">{{project.type}}</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="pzProjectDateOfDelivery">Date of Delivery </label>
+              <input id="pzProjectDateOfDelivery" formControlName="pzProjectDateOfDelivery" type="date" class="form-control" placeholder="Ex. 1000" />
+            </div>
+          </div>
+          <div class="col-md-6 col-xs-12">
+            <div class="form-group">
+              <label for="pzProjectDesc">Project Description</label>
+              <textarea class="form-control" formControlName="pzProjectDesc" id="pzProjectDesc"></textarea>
+            </div>
+            <div class="form-group">
+              <label for="pzProjectAmount">Total Project Amount <strong>Rs.</strong></label>
+              <input id="pzProjectAmount" type="text" formControlName="pzProjectAmount" class="form-control" placeholder="Ex. 1000" />
+            </div>
+            <div class="form-group">
+              <label for="pzProjectSplIns">Special Instruction</label>
+              <textarea class="form-control" formControlName="pzProjectSplIns" id="pzProjectSplIns"></textarea>
+            </div>
+          </div>
+          <div class="col-md-12 col-xs-12">            
+            <div class="btn-group">
+              <button type="button" class="btn btn-dark" type="submit">Create</button>
+              <button type="button" class="btn btn-light">Cancel</button>
+            </div>
+          </div>
+        </form>
+      </div>            
+    </div>
+  </div> 
+
+  <!-- RUNNING PROJECTS WITH DESIGNER ASSIGNED -->
+  <div class="row mt-1 mb-4">
+    <div class="col-md-12 col-xs-12">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title text-uppercase">Running Projects</h5>
+          <h6 class="card-subtitle mb-2 text-muted" *ngIf="projectsWithDesigner.length > 0">Total {{projectsWithDesigner?.length}} projects</h6>
+          <table class="table table-hover table-stripe" *ngIf="projectsWithDesigner.length > 0">
+            <tbody>
+              <tr *ngFor="let pro of projectsWithDesigner">
+                <td><strong>{{pro?.projectName}}</strong></td>
+                <td>{{pro?.projectType}}</td>
+                <td><em>{{pro?.projectDescription}}</em></td>
+                <td><span class="badge badge-info">{{pro?.designer}}</span></td>
+                <td>{{pro?.projectDeliveryDate}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>  
+
+  <!-- PROJECTS ARE READY BUT YET NOT READY -->
+    <div class="row mt-1 mb-4">
+        <div class="col-md-8 col-xs-12">
+            <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title text-uppercase">Projects Not assigned</h5>
+                  <ng-template *ngIf="projectsWithoutDesigner.length > 0">ghdgd</ng-template>
+                  <h6 class="card-subtitle mb-2 text-muted">Total {{projectsWithoutDesigner.length}} projects</h6>
+                  <table class="table table-hover table-stripe">
+                    <thead>
+                      <tr>
+                        <th scope="col">Project Name</th>
+                        <th scope="col">Project Description</th>
+                        <th scope="col">Amount</th>
+                        <th scope="col">Date of Delivery</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let pro of projectsWithoutDesigner">
+                          <td><strong>{{pro?.projectName}}</strong></td>
+                          <td>{{pro?.projectDescription}}</td>
+                          <td>{{pro?.projectValue}}</td>
+                          <td>{{pro?.projectDeliveryDate}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- DESIGNER ASSIGNMENT -->
+        <div class="col-md-4 col-xs-12">
+            <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title text-uppercase">Assign Designer</h5>
+                  <h6 class="card-subtitle mb-2 text-muted">Total 6 employees</h6>
+                  <table class="table">
+                    <tr>
+                    <td>
+                      <select  class="form-control">
+                        <option value="project.name" *ngFor="let project of projectsWithoutDesigner">{{project?.projectName}}</option>
+                      </select>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <select  class="form-control">
+                        <option value="em.name" *ngFor="let em of designers">{{em.name}}</option>
+                      </select>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <a [routerLink]="['/']" class="btn btn-dark">Assign</a>
+                    </td>
+                  </tr>
+                  </table>
+                </div>
+            </div>
+        </div>        
+    </div>
+</div>
+
+
+<!-- <div class="container min-heigh">
+  <app-users-details [pcdata]="newBtnName"></app-users-details> 
+  <div class="row mt-1 mb-4" *ngIf="editBoardFlag">
+    <div class="col-md-12">
+      <div class="card p-4">
+        <h5 class="text-uppercase text-success">
+          <img src="../../../assets/bootstrap-icons/pencil.svg" alt="pencil" width="25" height="15" title="pencil">
+           Projects</h5>
            <hr/>     
-          <form class="mt-4 mb-4" [formGroup]="createProjectForm" (ngSubmit)="createProjectFormValue()">
-            <div class="row">
-              <div class="col-md-6 col-xs-12">
-                <div class="form-group">
-                  <label for="projectName">Name of the Project</label>
-                  <input type="text" class="form-control" 
-                  id="projectName" 
-                  formControlName="projectName"
-                  aria-describedby="projectName">
-                </div>
-                <div class="form-group">
-                  <label for="projectType">Project Type</label>
-                  <select class="form-control" 
-                  formControlName="projectType"
-                  id="projectName">
-                    <option selected="selected">Choose Type</option>
-                    <option *ngFor="let type of projectType" value="type">{{type}}</option>
-                  </select>
-                </div>
-                <div class="form-group">
-                  <label for="projectDescription">Project Description</label>
-                  <textarea class="form-control" 
-                  formControlName="projectDescription"
-                  id="projectDescription"></textarea>
-                </div>
-              </div>
-              <div class="col-md-6 col-xs-12">
-                <div class="form-group">
-                  <label for="projectValue">Project Value (Total Rs.)</label>
-                  <input type="number" class="form-control" 
-                  formControlName="projectValue"
-                  id="projectValue" aria-describedby="projectValue">
-                </div>          
-                <div class="form-group">
-                  <label for="paidAmount">Paid Amount (Client paid Rs.)</label>
-                  <input type="number" class="form-control"
-                  formControlName="paidAmount" 
-                  id="paidAmount" aria-describedby="paidAmount">
-                </div>
-              </div>
-              <div class="col-md-12 col-xs-12">
-                <div class="btn-group">
-                  <button type="submit" class="btn btn-primary" [disabled]="!createProjectForm.valid">Submit</button>
-                </div>
-              </div>              
-            </div>           
           
-          </form>
       </div>            
     </div>
   </div>   
@@ -114,4 +211,57 @@
             </div>
         </div>        
     </div>
-</div>
+</div> -->
+
+
+
+
+
+<!-- <form class="mt-4 mb-4" [formGroup]="createProjectForm" (ngSubmit)="createProjectFormValue()">
+  <div class="row">
+    <div class="col-md-6 col-xs-12">
+      <div class="form-group">
+        <label for="projectName">Name of the Project</label>
+        <input type="text" class="form-control" 
+        id="projectName" 
+        formControlName="projectName"
+        aria-describedby="projectName">
+      </div>
+      <div class="form-group">
+        <label for="projectType">Project Type</label>
+        <select class="form-control" 
+        formControlName="projectType"
+        id="projectName">
+          <option selected="selected">Choose Type</option>
+          <option *ngFor="let type of projectType" value="type">{{type}}</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="projectDescription">Project Description</label>
+        <textarea class="form-control" 
+        formControlName="projectDescription"
+        id="projectDescription"></textarea>
+      </div>
+    </div>
+    <div class="col-md-6 col-xs-12">
+      <div class="form-group">
+        <label for="projectValue">Project Value (Total Rs.)</label>
+        <input type="number" class="form-control" 
+        formControlName="projectValue"
+        id="projectValue" aria-describedby="projectValue">
+      </div>          
+      <div class="form-group">
+        <label for="paidAmount">Paid Amount (Client paid Rs.)</label>
+        <input type="number" class="form-control"
+        formControlName="paidAmount" 
+        id="paidAmount" aria-describedby="paidAmount">
+      </div>
+    </div>
+    <div class="col-md-12 col-xs-12">
+      <div class="btn-group">
+        <button type="submit" class="btn btn-primary" [disabled]="!createProjectForm.valid">Submit</button>
+      </div>
+    </div>              
+  </div>           
+
+</form> -->
