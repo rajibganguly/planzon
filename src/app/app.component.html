@@ -1,5 +1,14 @@
-<main class="bg-primary">
-<app-header></app-header>
-    <router-outlet></router-outlet>
-<app-footer></app-footer>
+<main class="animate__backInRight">
+    <!-- The video -->
+    <video autoplay muted loop id="myVideo">
+        <source src="./../assets/img/planzon.mp4" type="video/mp4">
+    </video>
+
+    <!-- Optional: some overlay text to describe the video -->
+    <div class="contentrg container">
+        <app-header></app-header>
+        <router-outlet></router-outlet>
+        <app-footer></app-footer>
+    </div>
+
 </main>
