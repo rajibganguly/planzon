@@ -1,14 +1,14 @@
-<h1 class="font-pacific">Life-Style Planzon!</h1>
+<h1 class="font-pacific">Life-Style w3e-video!</h1>
 <div style="margin-top:5rem;">
     <div class="row">
         <!-- Card details -->
-        <div class="col-lg-3" *ngFor="let card of cards">
-            <div class="card" style="width: 18rem;">
+        <div class="col-lg-3 col-xs-12" *ngFor="let c of cards | filters: gennre ">
+            <div class="card">
                 <div class="card-body">
-                  <h5 class="card-title">{{card.title}}</h5>
-                  <h6 class="card-subtitle mb-2 text-muted">{{card.subtitle}}</h6>
-                  <img [src]="card.image" class="card-img-top" alt=""/>
-                  <a href="#" class="card-link">{{card.link}}</a>
+                  <h5 class="card-title">{{c.title}}</h5>
+                  <h6 class="card-subtitle mb-2 text-muted">{{c.subtitle}}</h6>
+                  <img [src]="c.image" class="card-img-top" alt=""  (click)="getToMedias(c)"/>                  
+                  <a class="card-link">{{c.link}}</a>
                 </div>
               </div>
         </div>

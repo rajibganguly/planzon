@@ -20,16 +20,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'planzon'`, () => {
+  it(`should have as title 'w3evideo'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('planzon');
+    expect(app.title).toEqual('w3evideo');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('planzon app is running!');
+    expect(compiled.querySelector('.content span').textContent).toContain('w3evideo app is running!');
   });
 });

@@ -1,0 +1,17 @@
+<h1 class="font-pacific">Live vedeo</h1>
+<div style="margin-top:5rem;">
+    <div class="row">
+        <!-- Card details -->
+        <div class="col-lg-3 col-xs-12" *ngFor="let c of medias">
+            <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">{{c.title}}</h5>            
+                  <iframe width="420" height="315"
+                  src="{{c.media}}">
+                  </iframe>
+                  <p class="card-link" (click)="getToMedias(c)"><span>LIKE: {{c.like}}</span>  {{c.duration}}</p>
+                </div>
+              </div>
+        </div>
+    </div>
+</div>
